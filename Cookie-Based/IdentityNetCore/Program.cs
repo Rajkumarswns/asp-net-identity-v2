@@ -11,7 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 var connString = builder.Configuration["ConnectionStrings:Default"];
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
+builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseInMemoryDatabase("InMemoryDb"));
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 
